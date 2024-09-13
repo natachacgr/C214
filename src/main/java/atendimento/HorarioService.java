@@ -1,3 +1,5 @@
+package atendimento;
+
 public interface HorarioService {
     public String busca(int id);
 

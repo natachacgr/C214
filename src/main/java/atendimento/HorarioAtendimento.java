@@ -1,3 +1,5 @@
+package atendimento;
+
 public class HorarioAtendimento {
 
     private String nomeDoProfessor;

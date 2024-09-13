@@ -1,3 +1,5 @@
+package test;
+
 public class HorarioConst {
     public static String HORARIO1=
             "{\"nomeProfessor\": \"João\", \n" +
