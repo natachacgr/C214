@@ -10,7 +10,14 @@ public class BuscaHorario {
     }
 
     public boolean verificaHorarioExistente(int id){
-        return horarioService.horarioExistente(id);
+        boolean horarioExistente = horarioService.horarioExistente(id);
+
+        if(horarioExistente){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public HorarioAtendimento buscaHorario(int id){
