@@ -1,5 +1,6 @@
 package atendimento;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -27,12 +28,18 @@ public class BuscaHorario {
 
         JsonObject jsonObject = JsonParser.parseString(horarioJson).getAsJsonObject();
 
+        JsonArray predioArray = jsonObject.getAsJsonArray("predio");
+        String[] predios = new String[predioArray.size()];
+        for (int i = 0; i < predioArray.size(); i++) {
+            predios[i] = predioArray.get(i).getAsString();
+        }
+
         return new HorarioAtendimento(
-                jsonObject.get("nomeDoProfessor").getAsString(),
-                jsonObject.get("horario").getAsString(),
+                jsonObject.get("nomeProfessor").getAsString(),
+                jsonObject.get("horarioDeAtendimento").getAsString(),
                 jsonObject.get("periodo").getAsString(),
                 jsonObject.get("sala").getAsString(),
-                jsonObject.get("predio").getAsString().split(",")
+                predios
         );
     }
 
@@ -44,4 +51,5 @@ public class BuscaHorario {
 
         return predio[posicaoPredio];
     }
+
 }

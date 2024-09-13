@@ -55,4 +55,5 @@ public class HorarioAtendimento {
     public void setPredio(String[] predio) {
         this.predio = predio;
     }
+
 }
