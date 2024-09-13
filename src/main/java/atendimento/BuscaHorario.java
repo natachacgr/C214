@@ -24,6 +24,7 @@ public class BuscaHorario {
     }
 
     public HorarioAtendimento buscaHorario(int id){
+
         String horarioJson = horarioService.busca(id);
 
         JsonObject jsonObject = JsonParser.parseString(horarioJson).getAsJsonObject();
@@ -43,7 +44,6 @@ public class BuscaHorario {
         );
     }
 
-    //Caso a sala seja (1-5) o prédio escolhido no array "predio"deve ser 1. Caso seja (6 - 10) o prédio é o 2 e assim por diante até o prédio 6, excluindo o prédio 5.
     public String escolhePredio(String sala, String[] predio){
         int salaInteger = Integer.parseInt(sala);
 
