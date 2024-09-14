@@ -16,6 +16,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 //import java.lang.NullPointerException;
@@ -189,21 +190,11 @@ public class TestBuscaHorario {
     //Teste 3
     @Test (expected = NullPointerException.class)
     public void testBuscaHorarioJsonIncompleto(){
-        Mockito.when(service.busca(55)).thenReturn(HorarioConst.IMCOMPLETE_JSON1);
+        Mockito.when(service.busca(55)).thenReturn(HorarioConst.INCOMPLETE_JSON1);
 
-        HorarioAtendimento horario = buscaHorario.buscaHorario(55);
+        buscaHorario.buscaHorario(55);
 
-    }
-
-    //Teste 4
-    // @Test
-    // public void testProfessorPrediosLengthZero(){
-    //     Mockito.when(service.busca(55)).thenReturn(HorarioConst.HORARIO_INVALIDO);
-
-    //     HorarioAtendimento horario = buscaHorario.buscaHorario(55);
-
-    //     assertTrue(horario.getPredio().length  0);
-    // }
+    }    
 
     //Teste 4
     @Test
@@ -243,13 +234,68 @@ public class TestBuscaHorario {
     //Teste 6
     @Test
     public void testPredioLengthVazio(){
-        Mockito.when(service.busca(55)).thenReturn(HorarioConst.IMCOMPLETE_JSON2);
+        Mockito.when(service.busca(55)).thenReturn(HorarioConst.INCOMPLETE_JSON2);
 
         HorarioAtendimento horario = buscaHorario.buscaHorario(55);
 
         assertFalse(horario.getPredio().length == 5);
     }
 
+    //Teste 7
     @Test
-    public void test
+    public void testBuscaHorarioPredioIncompleto() {
+        Mockito.when(service.busca(3)).thenReturn(HorarioConst.INCOMPLETE_JSON3);
+
+        HorarioAtendimento horario = buscaHorario.buscaHorario(3);
+
+        assertNotNull(horario.getPredio());
+        assertTrue(horario.getPredio().length < 5);
+    }
+
+    //Teste 8
+    @Test
+    public void testEscolhePredioArrayNulo() {
+        
+        String message = "";
+        String predio = "";
+        
+        try{
+            predio = buscaHorario.escolhePredio("1", null);
+        }catch(Exception e){
+            message = e.getMessage();
+        }
+
+        assertEquals("Predio inválido", message);
+        assertEquals("", predio);
+    }
+
+    //Teste 9
+    @Test
+    public void testEscolhePredioArrayVazio() {
+        
+        String message = "";
+        String predio = "";
+        
+        try{
+            predio = buscaHorario.escolhePredio("1", new String[]{});
+        }catch(Exception e){
+            message = e.getMessage();
+        }
+
+        assertEquals("Predio inválido", message);
+        assertEquals("", predio);
+    }
+
+    //Teste 10
+    @Test
+    public void testBuscaHorarioIdNegativo(){
+        Mockito.when(service.busca(-1)).thenReturn(HorarioConst.HORARIO_INVALIDO);
+
+        HorarioAtendimento horario = buscaHorario.buscaHorario(-1);
+
+        assertEquals("-", horario.getNomeDoProfessor());
+        assertEquals("-", horario.getHorario());
+        assertEquals("-", horario.getPeriodo());
+        assertEquals("-", horario.getSala());
+    }
 }

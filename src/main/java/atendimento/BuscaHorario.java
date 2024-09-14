@@ -54,6 +54,10 @@ public class BuscaHorario {
     public String escolhePredio(String sala, String[] predio) throws Exception{
         int salaInteger = Integer.parseInt(sala);
 
+        if(predio == null || predio.length == 0){
+            throw new Exception("Predio inválido");
+        }
+
         if(salaInteger <= 0){
             throw new Exception("Sala inválida");
         }

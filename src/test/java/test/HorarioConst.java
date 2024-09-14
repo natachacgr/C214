@@ -29,14 +29,21 @@ public class HorarioConst {
                         "\"sala\": \"-\", \n" +
                         "\"predio\": [\"1\", \"2\", \"3\", \"4\", \"6\"]}";
 
-        public static String IMCOMPLETE_JSON1=
+        public static String INCOMPLETE_JSON1=
                 "{\"horarioDeAtendimento\": \"Quarta-feira 16:00\", \n" +
                         "\"periodo\": \"matutino\", \n" +
                         "\"sala\": \"3\"}";
 
-        public static String IMCOMPLETE_JSON2=
+        public static String INCOMPLETE_JSON2=
                 "{\"nomeProfessor\": \"-\", \n" +
                         "\"horarioDeAtendimento\": \"-\", \n" +
                         "\"periodo\": \"-\", \n" +
                         "\"sala\": \"-\"}";
+
+        public static String INCOMPLETE_JSON3=
+                "{\"nomeProfessor\": \"José\", \n" +
+                        "\"horarioDeAtendimento\": \"Quarta-feira 16:00\", \n" +
+                        "\"periodo\": \"matutino\", \n" +
+                        "\"sala\": \"3\", \n" +
+                        "\"predio\": [\"1\", \"2\", \"3\"]}";
 }
